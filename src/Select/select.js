@@ -39,8 +39,15 @@ function Selection() {
     }
 
     useEffect(() => {
-        socketInstance.on('userDelete', () => {
-            alert('Usuario deletado')
+        socketInstance.on('userDelete', async () => {
+            alert('Usuario deletado');
+            try {
+                const data = await ListUser();
+                setListUser(data)
+            } catch (e) {
+                console.log(e);
+            } finally {
+            }
         })
 
         return () => {
